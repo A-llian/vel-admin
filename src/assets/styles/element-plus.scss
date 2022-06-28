@@ -1,0 +1,16 @@
+// // el-form-item
+// .el-form-item {
+//   margin-bottom: 20px;
+// }
+// el-menu
+.el-menu {
+  border-right: none;
+}
+.el-menu .is-active>.el-sub-menu__title {
+  color: var(--sider-sub-menu-active-text-color) !important;
+}
+
+// el-button
+.el-button {
+  border-radius: 0;
+}

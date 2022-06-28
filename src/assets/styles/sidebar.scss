@@ -1,0 +1,18 @@
+.el-aside {
+  background-color: var(--sider-bg-color);
+  transition: width .28s;
+}
+
+.siderbar {
+  width: 210px;
+}
+
+.collpase {
+  width: 64px;
+}
+
+.is-hidden {
+  .siderbar {
+    width: 0
+  }
+}
