@@ -35,7 +35,26 @@ export const asyncRoute = [
         meta: { title: '角色管理' }
       }
     ]
-  }
+  },
+  {
+    path: '/antv',
+    component: Layout,
+    meta: { title: '图编辑' },
+    children: [
+      {
+        path: 'flow',
+        name: 'FLOW',
+        component: () => import('@/views/antv/flow/index.vue'),
+        meta: { title: '流程图' }
+      },
+      {
+        path: 'er',
+        name: 'ER',
+        component: () => import('@/views/antv/er/index.vue'),
+        meta: { title: 'ER图' }
+      }
+    ]
+  },
 ]
 
 const constantRouterMap: Array<RouteRecordRaw> = [
