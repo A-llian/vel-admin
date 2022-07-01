@@ -1,24 +1,10 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
-// import Layout from '@/layout/index.vue'
+import Layout from '@/layout/index.vue'
 import login from '@/views/login/index.vue'
 
 
-export const asyncRoute = [
-  {
-    path: '/',
-    component: 'Layout',
-    redirect: '/dashboard',
-    children: [
-      {
-        path: 'dashboard',
-        name: 'DASHBOARD',
-        // component: () => import('@/views/dashboard/index.vue'),
-        component: 'dashboard/index.vue',
-        meta: { title: '首页' }
-      },
-    ]
-  },
+export const asyncRouter = [
   {
     path: '/system',
     component: 'Layout',
@@ -70,7 +56,19 @@ export const constantRouterMap: Array<RouteRecordRaw> = [
     component: login,
     meta: { hidden: true }
   },
-  // ...asyncRoute
+  {
+    path: '/',
+    component: Layout,
+    redirect: '/dashboard',
+    children: [
+      {
+        path: 'dashboard',
+        name: 'DASHBOARD',
+        component: () => import('@/views/dashboard/index.vue'),
+        meta: { title: '首页' }
+      }
+    ]
+  }
 ]
 
 const router = createRouter({

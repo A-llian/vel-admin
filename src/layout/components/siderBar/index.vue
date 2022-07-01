@@ -22,7 +22,6 @@ export default { name: 'SiderBar' }
 import { computed } from 'vue'
 import{ useRoute } from 'vue-router'
 import store from '@/store'
-// import { asyncRoute } from '@/router/routes'
 import siderBarItem from './siderBarItem.vue';
 
 const activeMenu = computed(() => {

@@ -32,7 +32,7 @@ import { onMounted, watch, computed } from 'vue'
 import ScrollPane from './scrollPane.vue'
 import path from 'path'
 import { useRoute, useRouter, RouteRecordRaw, RouteLocationNormalized } from 'vue-router'
-import { asyncRoute } from '@/router/routes'
+// import { asyncRouter } from '@/router/routes'
 import store from '@/store'
 
 const route = useRoute()
@@ -89,7 +89,7 @@ const filterAffixTags = (routes: RouteRecordRaw[], basePath = '/'): RouteLocatio
 
 // 初始化的时候获取首页粘贴上标签
 const initTags = () => {
-  const tags = filterAffixTags(asyncRoute)
+  const tags = filterAffixTags(store.permissionStore.addRouters)
   for (const tag of tags) {
         // Must have tag name
     if (tag.name) {

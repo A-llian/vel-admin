@@ -1,5 +1,5 @@
 import router from './routes'
-import { asyncRoute } from './routes'
+import { asyncRouter } from './routes'
 import { getToken } from '@/utils/auth'
 import store from '@/store'
 import { RouteRecordRaw } from 'vue-router'
@@ -12,7 +12,7 @@ router.beforeEach((to, from, next) => {
       next({ path: '/' })
     } else {
       if (store.permissionStore.addRouters.length === 0) {
-        store.permissionStore.GenerateRoutes(asyncRoute).then(() => { // 根据roles权限生成可访问的路由表
+        store.permissionStore.GenerateRoutes(asyncRouter).then(() => { // 根据roles权限生成可访问的路由表
           store.permissionStore.addRouters.forEach((asyncRouter: RouteRecordRaw) => {
             router.addRoute(asyncRouter)
           })
@@ -27,7 +27,6 @@ router.beforeEach((to, from, next) => {
         //   next({ path: '/401', replace: true, query: { noGoBack: true }})
         // }
       }
-      // next()
     }
   } else {
     if (whiteList.indexOf(to.path) !== -1) {

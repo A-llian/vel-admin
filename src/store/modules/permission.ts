@@ -45,14 +45,6 @@ function filterAsyncRouter(asyncRouter: any[]): RouteRecordRaw[] {
         router.component = loadView(component)
       }
     }
-    // const route = {
-    //   path: router.path,
-    //   name: router.name,
-    //   component: router.component === 'Layout' ? shallowRef(Layout) : loadView(router.component),
-    //   children: router.children,
-    //   meta: router?.meta
-
-    // }
     accessedRouters.push(router)
   })
   return accessedRouters
