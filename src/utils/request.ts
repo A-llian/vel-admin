@@ -1,9 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
-import { userStore } from '@store/user'
+import store from '@/store'
 import { getToken, removeToken } from '@/utils/auth'
 import { ElMessageBox, ElMessage } from 'element-plus'
-
-const useUserStore = userStore()
 
 // create an axios instance
 const service = axios.create({
@@ -17,7 +15,7 @@ service.interceptors.request.use(
   (config: AxiosRequestConfig) => {
     // do something before request is sent
 
-    if (useUserStore.token) {
+    if (store.userStore.token) {
       // let each request carry token
       // ['X-Token'] is a custom headers key
       // please modify it according to the actual situation

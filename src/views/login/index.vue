@@ -35,7 +35,7 @@ import { reactive, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import type { FormInstance, FormRules } from "element-plus"
 import { FormType } from './type'
-import { userStore } from '@store/user'
+import store from '@/store'
 
 const validatePassword = (rule: any, value: string, callback: any) => {
   if (value.length < 6) {
@@ -56,8 +56,6 @@ const rules: FormRules = {
   password: [{ required: true, trigger: 'blur', validator: validatePassword }]
 }
 
-const store = userStore()
-
 const redirect = ref()
 const router = useRouter()
 const route = useRoute()
@@ -69,7 +67,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
   formEl?.validate((valid: boolean) => {
     if (valid) {
       loading.value = true
-      store.Login(ruleForm).then(() => {
+      store.userStore.Login(ruleForm).then(() => {
         loading.value = false
         router.push({ path: redirect.value || '/' })
       })

@@ -45,8 +45,7 @@ module.exports = defineConfig({
     name: name,
     resolve: {
       alias: {
-        '@': resolve('src'),
-        '@store': resolve('src/store/modules')
+        '@': resolve('src')
       },
     },
     plugins: [new NodePolyfillPlugin()]

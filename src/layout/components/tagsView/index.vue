@@ -33,14 +33,13 @@ import ScrollPane from './scrollPane.vue'
 import path from 'path'
 import { useRoute, useRouter, RouteRecordRaw, RouteLocationNormalized } from 'vue-router'
 import { asyncRoute } from '@/router/routes'
-import { tagsStore } from '@store/tags'
+import store from '@/store'
 
 const route = useRoute()
 const router = useRouter()
-const useTagsStore = tagsStore()
 
 const getTags = computed(() => {
-  return useTagsStore.getVisitedViews
+  return store.tagsStore.getVisitedViews
 })
 
 const isActive = (tag: { path: string; }) => {
@@ -55,7 +54,7 @@ watch(() => route.path, () => {
 const addTags = () => {
   const { name } = route
   if (name) {
-    useTagsStore.addView(route)
+    store.tagsStore.addView(route)
   }
   return false
 }
@@ -94,14 +93,14 @@ const initTags = () => {
   for (const tag of tags) {
         // Must have tag name
     if (tag.name) {
-      useTagsStore.addView(tag)
+      store.tagsStore.addView(tag)
     }
   }
 }
 
 // 关闭标签
 const closeSelectedTag = (view: RouteLocationNormalized) => {
-  useTagsStore.delView(view).then((visitedViews: any) => {
+  store.tagsStore.delView(view).then((visitedViews: any) => {
     if (isActive(view)) {
       const latestView = visitedViews.slice(-1)[0]
       if (latestView) {

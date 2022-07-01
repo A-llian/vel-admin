@@ -1,12 +1,13 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 
+import { createPinia } from 'pinia'
+import { registerStore } from './store'
+
 // 路由表
 import router from './router/routes'
 // 路由权限
 import './router'
-
-import store from './store'
 
 // element-Plus
 import elIcons from './el-icons'
@@ -17,10 +18,12 @@ import 'normalize.css/normalize.css'
 import '@/assets/styles/index.scss'
 
 
+const app = createApp(App)
+app.use(router)
+app.use(createPinia())
+app.use(ElementPlus)
+app.use(elIcons)
+app.mount('#app')
 
-createApp(App)
-  .use(router)
-  .use(store)
-  .use(ElementPlus)
-  .use(elIcons)
-  .mount('#app')
+
+registerStore()

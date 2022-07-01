@@ -1,6 +1,6 @@
 <template>
-<el-container class="common-layout" :class="`${useAppStore.device}`">
-  <sider-bar :class="useAppStore.getIsCollpase ? 'collpase' : 'siderbar'" />
+<el-container class="common-layout" :class="`${store.appStore.device}`">
+  <sider-bar :class="store.appStore.getIsCollpase ? 'collpase' : 'siderbar'" />
   <el-container direction="vertical" class="app-container">
     <app-header />
     <app-main />
@@ -15,9 +15,7 @@ export default { name: 'LayOut' }
 <script lang="ts" setup>
 import { onMounted, onUnmounted } from 'vue'
 import { siderBar, appMain, appHeader } from './components'
-import { appStore } from '@store/app'
-
-const useAppStore = appStore()
+import store from '@/store'
 
 const { body } = document
 
@@ -30,9 +28,9 @@ const _resizeHandler = () => {
   const isMobile = _isMobile()
 
   if (isMobile) {
-    useAppStore.Toogle_device('is-hidden')
+    store.appStore.Toogle_device('is-hidden')
   } else {
-    useAppStore.Toogle_device('')
+    store.appStore.Toogle_device('')
   }
 }
 

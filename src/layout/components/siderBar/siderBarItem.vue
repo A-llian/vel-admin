@@ -1,9 +1,10 @@
 <template>
-	<template v-if="hasOneShowingChild(item.children, item) && (!onlyOneChild.children || onlyOneChild.noShowingChildren) && (!item.meta || !item.meta.alwaysShow)">
+	<div v-if="!item.meta?.hidden">
+	<template v-if="hasOneShowingChild(item.children, item) && (!onlyOneChild?.children || onlyOneChild.noShowingChildren) && (!item.meta || !item.meta.alwaysShow)">
 		<el-menu-item :index="resolvePath(onlyOneChild.path)">
 			<el-icon><User /></el-icon>
 			<template #title>
-				<span>{{ onlyOneChild.meta.title }}</span>
+				<span>{{ onlyOneChild?.meta?.title }}</span>
 			</template>
 		</el-menu-item>
 	</template>
@@ -20,7 +21,7 @@
 			:base-path="resolvePath(child.path)"
 			class="nest-menu"
 		/>
-	</el-sub-menu>
+	</el-sub-menu></div>
 </template>
 
 <script lang="ts">
@@ -48,7 +49,7 @@ const props = defineProps({
 	}
 })
 
-const onlyOneChild = ref<RouteType>()
+const onlyOneChild = ref<any>(null)
 function hasOneShowingChild(children = [], parent: RouteType): boolean {
 	if (!children) {
 		children = []

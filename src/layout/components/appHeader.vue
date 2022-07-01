@@ -3,7 +3,7 @@
     <div class="navbar">
       <div class="hamburger-container" @click="toogle">
         <el-icon :size="24">
-          <component :is="`${useAppStore.getIsCollpase ? 'Expand' : 'Fold'}`" />
+          <component :is="`${store.appStore.getIsCollpase ? 'Expand' : 'Fold'}`" />
         </el-icon>
       </div>
       <bread-crumb />
@@ -20,14 +20,12 @@ export default { name: 'AppHeader' }
 import { ref } from 'vue'
 import BreadCrumb from '@/components/BreadCrumd/index.vue';
 import TagsView from './tagsView/index.vue';
-import { appStore } from '@store/app'
-
-const useAppStore = appStore()
+import store from '@/store'
 
 const flag = ref<boolean>(false)
 const toogle = () => {
   flag.value = !flag.value
-  useAppStore.Toogle(flag.value)
+  store.appStore.Toogle(flag.value)
 }
 </script>
 
